@@ -1,0 +1,16 @@
+[
+  {
+    "id":1,
+    "type":"GITHUB",
+    "name":"Github代码库",
+    "path":"XuxuGood/jackjson",
+    "description":"JackJson多态解析"
+  },
+  {
+    "id":2,
+    "type":"GITLAB",
+    "name":"Gitlab代码库",
+    "path":"XuxuGood/jackjson",
+    "description":"JackJson多态解析"
+  }
+]
