@@ -3,7 +3,6 @@ package com.example.jackson.version2;
 import com.alibaba.fastjson.JSONObject;
 import com.example.jackson.common.ClassFactory;
 import com.example.jackson.common.JsonConst;
-import com.example.jackson.version1.GithubRepo;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +42,7 @@ public class BaseCodeRepoTest {
         log.info("Json2字符串为: {}", jsonString);
 
         try {
-            com.example.jackson.version1.GithubRepo githubRepo = (GithubRepo) mapper.readValue(jsonString, com.example.jackson.version1.BaseCodeRepo.class);
+            GithubRepo githubRepo = (GithubRepo) mapper.readValue(jsonString, BaseCodeRepo.class);
             log.info("GITHUB对象信息为: {}", JSONObject.toJSONString(githubRepo));
         } catch (IOException e) {
             e.printStackTrace();
