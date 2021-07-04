@@ -30,11 +30,17 @@ public class ClassFactory {
 
     static {
         Reflections reflections = new Reflections(new ConfigurationBuilder()
+                // 指定被扫描的包名
                 .setUrls(ClasspathHelper.forPackage(PACKAGE_PATH))
+                // 允许getAllTypes获取所有Object的子类, 不设置为false则 getAllTypes 会报错, 默认为true
                 .setScanners(new SubTypesScanner(false)
+                        // 设置方法参数名称扫描器, 否则调用 getConstructorParamNames 会报错
                         , new MethodParameterNamesScanner()
+                        // 设置方法注解扫描器, 否则 getConstructorsAnnotatedWith,getMethodsAnnotatedWith 会报错
                         , new MethodAnnotationsScanner()
+                        // 设置 member 扫描器, 否则 getMethodUsage 会报错, 不推荐使用,有可能会报错 Caused by: java.lang.ClassCastException: javassist.bytecode.InterfaceMethodrefInfo cannot be cast to javassist.bytecode.MethodrefInfo
                         , new MemberUsageScanner()
+                        // 设置类注解扫描器, 否则 getTypesAnnotatedWith 会报错
                         , new TypeAnnotationsScanner()));
         // 获取继承了BaseCodeRepo的所有类
         Set<Class<? extends BaseCodeRepo>> codeRepoClassSet = reflections.getSubTypesOf(BaseCodeRepo.class);
